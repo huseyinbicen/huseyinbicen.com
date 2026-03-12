@@ -1,779 +1,789 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Huseyin Bicen - SDE</title>
+  <title>Huseyin Bicen — Backend Engineer</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta property="og:title" content="Huseyin Bicen — Backend Software Engineer"/>
+  <meta property="og:url" content="https://huseyinbicen.com"/>
+  <meta property="og:description" content="Backend engineer building scalable systems. Distributed systems, AI infrastructure, clean architecture."/>
+  <meta name="Description" content="Backend engineer building scalable systems. Distributed systems, AI infrastructure, clean architecture."/>
+  <meta name="author" content="Huseyin Bicen"/>
+  <meta name="keywords" content="Huseyin Bicen, Backend Software Engineer, Java, Distributed Systems, AI Infrastructure, Staff Engineer"/>
+  <link rel="icon" href="https://i.ibb.co/ZdV18hH/HB-Logo-1.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous"/>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Optional meta tags -->
-    <meta property="og:site_name" content="Huseyin Bicen" />
-    <meta property="og:title" content="Huseyin Bicen - Software Development Engineer" />
-    <meta property="og:url" content="https://huseyinbicen.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description"
-        content="I love to solve challenging world-scale problems from an engineering perspective. Software Engineer gives me a chance to force the limits of imagination" />
-    <meta itemprop="name" content="Huseyin Bicen" />
-    <meta itemprop="url" content="https://huseyinbicen.com" />
-    <meta itemprop="description" content="Huseyin Bicen's official website" />
-    <meta name="twitter:title" content="Huseyin Bicen" />
-    <meta name="twitter:url" content="https://huseyinbicen.com" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="Huseyin Bicen - Software Development Engineer" />
-    <meta name="Description"
-        content="I love to solve challenging world-scale problems from an engineering perspective. Software Engineer gives me a chance to force the limits of imagination" />
+  <style>
+    :root {
+      /* Original navy palette */
+      --bg:        #0d1b26;
+      --bg2:       #1a252f;
+      --surface:   rgba(255,255,255,0.04);
+      --surface2:  rgba(255,255,255,0.07);
+      --border:    rgba(255,255,255,0.09);
+      --border2:   rgba(255,255,255,0.15);
+      /* Accents */
+      --cyan:      #4fc3f7;
+      --cyan-dim:  rgba(79,195,247,0.15);
+      --gold:      #ffd54f;
+      --gold-dim:  rgba(255,213,79,0.12);
+      --green:     #69f0ae;
+      --green-dim: rgba(105,240,174,0.1);
+      --text:      #b0c4d8;
+      --text-hi:   #e8f4fd;
+      --muted:     #506070;
+      --mono: 'Share Tech Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
 
-    <meta name="author" content="Huseyin Bicen" />
-    <meta name="keywords"
-        content="Huseyin Bicen, Software Engineer , SDE , Software Development Engineer , Backend Software Engineer, Engineer , Java Backend Software Engineer, huseyin bicen , bicen huseyin, Huseyin Bicen, hüseyin, biçen, huseyin, bicen" />
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="icon" href="https://i.ibb.co/ZdV18hH/HB-Logo-1.png" type="image/icon type">
-    <!-- https://huseyinbicen.com/image/1599695037605.png -->
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      overflow: hidden;
+    }
 
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    /* ── CANVAS ── */
+    #particle-canvas {
+      position: fixed; inset: 0; z-index: 0;
+    }
 
-    <!-- CSS My Website -->
-    <style type="text/css">
-        html {
-            font-size: 0.86rem; /* Default font size */
-        }
+    /* scan lines */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px);
+      pointer-events: none;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            overflow: hidden; /* Prevents scrolling the whole page */
-        }
+    /* vignette */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      background: radial-gradient(ellipse at center, transparent 35%, rgba(13,27,38,0.75) 100%);
+      pointer-events: none;
+    }
 
-        #particle-canvas {
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-        }
+    /* ── SCROLL WRAPPER ── */
+    .scroll-wrap {
+      position: fixed; inset: 0; z-index: 10;
+      overflow-y: auto; overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cyan) transparent;
+    }
+    .scroll-wrap::-webkit-scrollbar { width: 3px; }
+    .scroll-wrap::-webkit-scrollbar-thumb { background: var(--cyan); }
 
-        .my-content {
-            z-index: 1000;
-            text-align: center;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%; /* Adjusted width for better control */
-            height: auto;
-            max-height: 80%; /* Allow space for scrolling */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    /* ── MAIN COLUMN ── */
+    .col {
+      width: 100%;
+      max-width: 660px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-        #socil-icons {
-            padding: 10px;
-            color: #585858;
-            text-align: center;
-        }
+    /* ── BASE PANEL ── */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.2rem 1.4rem;
+      position: relative;
+    }
 
-        #socil-icons li {
-            display: inline-block;
-            margin: 0 10px;
-        }
+    /* corner accent */
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 14px; height: 14px;
+      border-top: 2px solid var(--cyan);
+      border-left: 2px solid var(--cyan);
+    }
 
-        #socil-icons .iconi {
-            font-size: 2.6rem; /* Large size for desktop */
-            color: #ffffff !important;
-        }
+    /* ── PANEL LABEL ── */
+    .panel-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+    .panel-tag span {
+      color: var(--cyan);
+      margin-right: 0.3rem;
+    }
 
-        a.social {
-            text-decoration: none;
-        }
+    /* ══════════════════════════════
+       PANEL 1 — IDENTITY
+    ══════════════════════════════ */
+    .panel-identity {
+      background: rgba(26,37,47,0.85);
+      border-color: rgba(79,195,247,0.2);
+    }
+    .identity-inner {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+    .avatar-wrap img {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      display: block;
+      filter: saturate(0.6) brightness(1.1);
+    }
+    .avatar-ring {
+      position: absolute; inset: -7px;
+      border-radius: 50%;
+      border: 1px dashed rgba(79,195,247,0.25);
+      animation: spin 14s linear infinite;
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute; top: -2px; left: 50%;
+      width: 5px; height: 5px;
+      background: var(--cyan); border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Responsive Padding */
-        .my-px-4 {
-            padding-right: 0.6rem;
-            padding-left: 0.6rem;
-        }
+    .identity-text { flex: 1; }
+    .sys-label {
+      font-size: 0.6rem;
+      color: var(--cyan);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(105,240,174,0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(105,240,174,0); }
+    }
+    .name {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--text-hi);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .role {
+      font-size: 0.68rem;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+      opacity: 0.8;
+    }
+    .pronun {
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .pronun em { color: var(--text); font-style: normal; }
 
-        .date-font {
-            font-size: 0.65rem;
-        }
+    /* ══════════════════════════════
+       PANEL 2 — TERMINAL / BIO
+    ══════════════════════════════ */
+    .panel-terminal {
+      border-color: rgba(79,195,247,0.12);
+      border-left: 2px solid var(--cyan);
+    }
+    .term-line { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 0.5rem; }
+    .term-prompt { color: var(--cyan); font-size: 0.75rem; }
+    .term-cmd {
+      color: var(--text-hi); font-size: 0.75rem;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid var(--cyan);
+      animation: typing 1.8s steps(40, end) 0.3s both, blink 0.9s step-end infinite 2.1s;
+      display: inline-block;
+    }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink  { 50% { border-color: transparent; } }
+    .term-output {
+      font-size: 0.76rem;
+      line-height: 1.8;
+      color: var(--text);
+      padding-left: 1rem;
+      border-left: 1px solid var(--border2);
+    }
+    .term-output .hi { color: var(--text-hi); }
 
-        .footer-font {
-            font-size: 0.9rem;
-        }
+    /* ══════════════════════════════
+       PANEL 3 — CAREER PATH
+    ══════════════════════════════ */
+    .panel-path {
+      border-color: rgba(255,213,79,0.12);
+    }
+    .panel-path::before { border-color: var(--gold); }
+    .path-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 0.3rem;
+    }
+    .path-steps::-webkit-scrollbar { height: 2px; }
+    .path-steps::-webkit-scrollbar-thumb { background: var(--gold); }
+    .path-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      min-width: 0;
+      flex: 1;
+    }
+    .step-node {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border2);
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .path-step.active .step-node {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      box-shadow: 0 0 12px rgba(79,195,247,0.25);
+    }
+    .path-step.future .step-node {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .step-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.3;
+    }
+    .path-step.active .step-label { color: var(--cyan); }
+    .path-step.future .step-label { color: var(--gold); }
+    .path-arrow {
+      font-size: 0.6rem;
+      color: var(--border2);
+      padding: 0 0.2rem;
+      margin-bottom: 1.2rem;
+      flex-shrink: 0;
+    }
+    .path-step.future .path-arrow { color: var(--gold-dim); }
+    .path-note {
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .path-note strong { color: var(--gold); }
 
-        .main-text-font {
-            font-size: 1.1rem;
-        }
+    /* ══════════════════════════════
+       PANEL 4 — STACK
+    ══════════════════════════════ */
+    .panel-stack { border-color: rgba(79,195,247,0.1); }
+    .stack-group { margin-bottom: 0.8rem; }
+    .stack-group:last-child { margin-bottom: 0; }
+    .stack-group-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .chip {
+      font-size: 0.62rem;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface2);
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .chip:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-dim);
+    }
+    .chip.ai {
+      color: var(--gold);
+      border-color: rgba(255,213,79,0.2);
+      background: var(--gold-dim);
+    }
+    .chip.ai:hover {
+      border-color: var(--gold);
+      background: rgba(255,213,79,0.2);
+    }
 
-        .block-relative-fitcontet {
-            display: block;
-            width: fit-content;
-            position: relative;
-        }
+    /* ══════════════════════════════
+       PANEL 5 — AI ERA
+    ══════════════════════════════ */
+    .panel-ai {
+      border: 1px solid rgba(255,213,79,0.2);
+      background: rgba(10,18,28,0.6);
+    }
+    .panel-ai::before { border-color: var(--gold); }
+    .ai-title {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.65rem;
+    }
+    .ai-body { font-size: 0.74rem; line-height: 1.85; color: var(--text); }
+    .ai-body strong { color: var(--gold); font-weight: normal; }
 
-        .fab {
-            color: black !important;
-        }
+    /* ══════════════════════════════
+       PANELS ROW — COUNTERS
+    ══════════════════════════════ */
+    .panels-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .panel-counter { border-color: rgba(79,195,247,0.1); }
+    .panel-counter.life::before { border-color: var(--green); }
+    .panel-counter.exp::before  { border-color: var(--cyan); }
+    .counter-row {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .counter-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .counter-val {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      padding: 0.05rem 0.3rem;
+      min-width: 2.2ch;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .panel-counter.life .counter-val {
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid rgba(105,240,174,0.18);
+    }
+    .panel-counter.exp .counter-val {
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid rgba(79,195,247,0.18);
+    }
+    .counter-lbl {
+      font-size: 0.44rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.15rem;
+    }
 
-        .my-background {
-            opacity: 1;
-            background-color: rgba(185, 185, 185, 0.2);
-            color: azure;
-        }
+    /* ══════════════════════════════
+       PANEL — SOCIALS
+    ══════════════════════════════ */
+    .panel-socials {
+      border-color: rgba(79,195,247,0.08);
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      color: var(--muted);
+      font-size: 1.25rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .social-link span {
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.2s;
+      color: var(--cyan);
+    }
+    .social-link:hover { color: var(--cyan); transform: translateY(-3px); }
+    .social-link:hover span { opacity: 1; }
 
-        .inner {
-            width: 100%;
-            max-width: 200px;
-            margin: 0 auto;
-        }
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .foot {
+      text-align: center;
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      padding: 0.4rem 0 0.2rem;
+    }
+    .foot a { color: var(--cyan); text-decoration: none; }
 
-        /* Adjustments for tablets (768px to 1023px) */
-        @media screen and (max-width: 1023px) {
-            .my-content {
-                width: 70%;
-                max-height: 75%;
-                padding: 15px;
-            }
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: flex;
+      gap: 0.9rem;
+      padding-bottom: 1.1rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 18px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item:last-of-type::before { display: none; }
+    .tl-dot {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      background: var(--bg);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .tl-body { flex: 1; min-width: 0; }
+    .tl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.15rem;
+      flex-wrap: wrap;
+    }
+    .tl-company { font-family: var(--sans); font-weight: 700; font-size: 0.82rem; color: var(--text-hi); }
+    .tl-period   { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; }
+    .tl-role     { font-size: 0.65rem; color: var(--cyan); letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .tl-detail   { font-size: 0.7rem; line-height: 1.75; color: var(--text); margin-bottom: 0.45rem; }
+    .tl-stat     { color: var(--green); }
+    .tl-tags     { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .tl-tag {
+      font-size: 0.55rem;
+      padding: 0.12rem 0.45rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--surface2);
+      letter-spacing: 0.05em;
+    }
 
-            #socil-icons .iconi {
-                font-size: 2.6rem;
-            }
+    /* ── AWARDS ── */
+    .awards-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .award {
+      font-size: 0.65rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+    }
+    .award em { color: var(--muted); margin-left: 0.3rem; font-style: normal; }
 
-            .date-font {
-                font-size: 0.65rem;
-            }
-
-            .main-text-font {
-                font-size: 1.1rem;
-            }
-
-            .footer-font {
-                font-size: 0.85rem;
-            }
-
-            .my-px-4 {
-                padding-right: 0.6rem;
-                padding-left: 0.6rem;
-            }
-        }
-
-        /* Adjustments for mobile devices (480px to 767px) */
-        @media screen and (max-width: 767px) {
-            .my-content {
-                width: 80%;
-                max-height: 70%;
-                padding: 10px;
-            }
-
-            #socil-icons .iconi {
-                font-size: 1.5rem;
-            }
-
-            .date-font {
-                font-size: 0.55rem;
-            }
-
-            .main-text-font {
-                font-size: 1rem;
-            }
-
-            .footer-font {
-                font-size: 0.8rem;
-            }
-
-            .my-px-4 {
-                padding-right: 0.5rem;
-                padding-left: 0.5rem;
-            }
-        }
-
-        /* Adjustments for small mobile devices (less than 480px) */
-        @media screen and (max-width: 479px) {
-            .my-content {
-                width: 90%;
-                max-height: 65%;
-                padding: 5px;
-            }
-
-            #socil-icons .iconi {
-                font-size: 1.5rem;
-            }
-
-            .date-font {
-                font-size: 0.55rem;
-            }
-
-            .main-text-font {
-                font-size: 0.9rem;
-            }
-
-            .footer-font {
-                font-size: 0.75rem;
-            }
-
-            .my-px-4 {
-                padding-right: 0.5rem;
-                padding-left: 0.5rem;
-            }
-        }
-
-    </style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .scroll-wrap { padding: 1rem 0.75rem; }
+      .panel { padding: 1rem 1rem; }
+      .identity-inner { gap: 1rem; }
+      .avatar-wrap img { width: 64px; height: 64px; }
+      .panels-row { grid-template-columns: 1fr; }
+      .path-steps { gap: 0; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Background -->
-    <div id="particle-canvas"></div>
 
-    <!-- My Center Content -->
-    <div class="row d-flex justify-content-center my-content my-background">
-        <div class="col-md-8">
-            <div class="text-center"> <img src="image/1599695037603.jpg" width="100"
-                    class="rounded-circle" /> </div>
-            <div class="text-center mt-1">
-                <h3 class="mt-2 mb-0">HUSEYIN BICEN</h3>
-                <span>Software Development Engineer</span>
-                <div class="px-4 mt-1">
+<canvas id="particle-canvas"></canvas>
 
-                    <p class="fonts main-text-font">
-                        Hello and welcome to my page.
-                        I’m Huseyin, a Software Development Engineer, and I love creating elegant and practical solutions for intricate, world-level challenges. 
-                        When I tell you that engineering in software is my profession, it is more than just an occupation, it is a way of life, a means of perpetual learning and improvement and transformation of oneself.
-                    </p>
+<div class="scroll-wrap">
+  <div class="col">
 
-                    <p class="fonts main-text-font">
-                        'Hüseyin Biçen' is my name in Turkish. The way I pronounce my name is "Hüseyin" sounds like "Hoo-sey-in."
-                    </p>
-
-                    <p class="fonts main-text-font">
-                        So once again, welcome to my site. 
-                        I encourage you to go through my page to know more about my abilities, experience and the areas I have projects that excite me. 
-                        I look forward to connecting with you.</p>
-                </div>
-                
-                <!-- Social Media -->
-                <ul id="socil-icons">
-                    <li title="Linkedin">
-                        <a class="social" href="https://www.linkedin.com/in/huseyinbicen" target="_blank">
-                            <i class="fab fa-linkedin-in iconi" style="color: black"></i>
-                        </a>
-
-                    </li>
-                    <li title="Github">
-                        <a class="social" href="https://github.com/huseyinbicen" target="_blank">
-                            <i class="fab fa-github iconi"></i>
-                        </a>
-                    </li>
-                    <li title="Youtube">
-                        <a class="social" href="https://www.youtube.com/@thisishu"
-                            target="_blank">
-                            <i class="fab fa-youtube iconi"></i>
-
-                        </a>
-                    </li>
-                    <!-- Spotify, Instagram and  Twitter disabled
-                    <li title="Spotify">
-                        <a class="social" href="https://open.spotify.com/user/username" target="_blank">
-                            <i class="fab fa-spotify iconi"></i>
-                        </a>
-                    </li>
-                    <li title="Instagram">
-                        <a class="social" href="https://www.instagram.com/username" target="_blank">
-                            <i class="fab fa-instagram iconi"></i>
-
-                        </a>
-                    </li>
-                    <li title="Twitter">
-                        <a class="social" href="https://twitter.com/username" target="_blank">
-                            <i class="fab fa-twitter iconi"></i>
-                        </a>
-                    </li>
-                    -->
-                    <li title="My Cat Instagram">
-                        <a class="social" href="https://www.instagram.com/thisiscatrobin" target="_blank">
-                            <i class="fas fa-cat iconi"></i>
-
-                        </a>
-                    </li>
-                    <li title="My Blog">
-                        <a class="social" href="https://blog.huseyinbicen.com" target="_blank">
-                            <i class="fas fa-blog iconi"></i>
-                        </a>
-                    </li>
-                    <li title="E-mail">
-                        <a class="social" href="mailto:huseynbicen@gmail.com" target="_blank">
-                            <i class="fas fa-envelope iconi"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Duration of Life -->
-            <div class="row d-flex justify-content-center mt-1">
-                <div class="px-4">
-                    <p class="fonts" style="font-size: 12px;">Life Span</p>
-                </div>
-
-                <div class="col block-relative-fitcontet">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_years_">-</span><br />
-                    <span class="px-1 text-white date-font">YEARS</span>
-                </div>
-                <div class="col block-relative-fitcontet">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_months_">-</span><br />
-                    <span class="px-1 text-white date-font">MONTHS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_days_">-</span><br />
-                    <span class="px-1 text-white date-font">DAYS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_hours_">-</span><br />
-                    <span class="px-1 text-white date-font">HOURS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_minutes_">-</span><br />
-                    <span class="px-1 text-white date-font">MINUTES</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="birth_seconds_">-</span><br />
-                    <span class="px-1 text-white date-font">SECONDS</span>
-                </div>
-            </div>
-
-            <!-- Duration of Experience -->
-            <div class="row d-flex justify-content-center mt-3 mb-3">
-                <div class="px-4">
-                    <p class="fonts" style="font-size: 12px;">Professional Tenure</p>
-                </div>
-
-                <div class="col block-relative-fitcontet">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_years_">-</span><br />
-                    <span class="px-1 text-white date-font">YEARS</span>
-                </div>
-                <div class="col block-relative-fitcontet">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_months_">-</span><br />
-                    <span class="px-1 text-white date-font">MONTHS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_days_">-</span><br />
-                    <span class="px-1 text-white date-font">DAYS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_hours_">-</span><br />
-                    <span class="px-1 text-white date-font">HOURS</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_minutes_">-</span><br />
-                    <span class="px-1 text-white date-font">MINUTES</span>
-                </div>
-                <div class="col">
-                    <span class="bg-secondary rounded text-white my-px-4" id="work_seconds_">-</span><br />
-                    <span class="px-1 text-white date-font">SECONDS</span>
-                </div>
-            </div>
+    <!-- ① IDENTITY -->
+    <div class="panel panel-identity">
+      <div class="identity-inner">
+        <div class="avatar-wrap">
+          <img src="image/1599695037603.jpg" alt="Huseyin Bicen"/>
+          <div class="avatar-ring"></div>
         </div>
+        <div class="identity-text">
+          <div class="sys-label"><span class="status-dot"></span>online</div>
+          <div class="name">HUSEYIN BICEN</div>
+          <div class="role">BACKEND SOFTWARE ENGINEER · CORE SYSTEMS</div>
+        </div>
+      </div>
     </div>
 
-    <!-- My Footer -->
-    <footer class="text-center text-white fixed-bottom my-background">
-        <div class="container footer-font">
-            <span>Powered by <a href="https://github.com/huseyinbicen" style="font-weight: bold;" target="_blank">Huseyin</a></span>
-            © <span id="date_"> </span> |
-            <a href="https://huseyinbicen.com" style="font-weight: bold;" target="_blank">
-                huseyinbicen.com
-            </a>
+    <!-- ② BIO -->
+    <div class="panel panel-terminal">
+      <div class="term-line">
+        <span class="term-prompt">$</span>
+        <span class="term-cmd">describe huseyinbicen --honest</span>
+      </div>
+      <div class="term-output">
+        Backend engineer with <span class="hi" id="exp-years">-- years</span> building production systems
+        at enterprise scale — banking, fintech, and insurance.<br/><br/>
+        I work on the hard parts: distributed systems, high-load microservices,
+        core platform architecture. The kind of problems where getting it wrong costs real money.
+      </div>
+    </div>
+
+    <!-- ③ AI ERA -->
+    <div class="panel panel-ai">
+      <div class="ai-title">AI-Era Backend Engineering</div>
+      <div class="ai-body">
+        The engineers AI can't replace are the ones <strong>it depends on to run</strong>.
+        My foundation is in high-load distributed systems — that's exactly what AI products need
+        to survive production. I'm focused on <strong>where backend engineering meets AI infrastructure</strong>:
+        the layer between the model and the real world.
+      </div>
+    </div>
+
+    <!-- ⑥ COUNTERS -->
+    <div class="panels-row">
+      <div class="panel panel-counter life">
+        <div class="panel-tag"><span>//</span> life span</div>
+        <div class="counter-row">
+          <div class="counter-unit"><div class="counter-val" id="b_y">--</div><div class="counter-lbl">YRS</div></div>
+          <div class="counter-unit"><div class="counter-val" id="b_mo">--</div><div class="counter-lbl">MO</div></div>
+          <div class="counter-unit"><div class="counter-val" id="b_d">--</div><div class="counter-lbl">DAY</div></div>
+          <div class="counter-unit"><div class="counter-val" id="b_h">--</div><div class="counter-lbl">HR</div></div>
+          <div class="counter-unit"><div class="counter-val" id="b_m">--</div><div class="counter-lbl">MIN</div></div>
+          <div class="counter-unit"><div class="counter-val" id="b_s">--</div><div class="counter-lbl">SEC</div></div>
         </div>
-    </footer>
+      </div>
+      <div class="panel panel-counter exp">
+        <div class="panel-tag"><span>//</span> professional tenure</div>
+        <div class="counter-row">
+          <div class="counter-unit"><div class="counter-val" id="w_y">--</div><div class="counter-lbl">YRS</div></div>
+          <div class="counter-unit"><div class="counter-val" id="w_mo">--</div><div class="counter-lbl">MO</div></div>
+          <div class="counter-unit"><div class="counter-val" id="w_d">--</div><div class="counter-lbl">DAY</div></div>
+          <div class="counter-unit"><div class="counter-val" id="w_h">--</div><div class="counter-lbl">HR</div></div>
+          <div class="counter-unit"><div class="counter-val" id="w_m">--</div><div class="counter-lbl">MIN</div></div>
+          <div class="counter-unit"><div class="counter-val" id="w_s">--</div><div class="counter-lbl">SEC</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑦ SOCIALS -->
+    <div class="panel panel-socials">
+      <div class="socials">
+        <a class="social-link" href="https://www.linkedin.com/in/huseyinbicen" target="_blank">
+          <i class="fab fa-linkedin-in"></i><span>LinkedIn</span>
+        </a>
+        <a class="social-link" href="https://github.com/huseyinbicen" target="_blank">
+          <i class="fab fa-github"></i><span>GitHub</span>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/thisiscatrobin" target="_blank">
+          <i class="fas fa-cat"></i><span>Robin 🐱</span>
+        </a>
+        <a class="social-link" href="/cdn-cgi/l/email-protection#fa928f899f83949893999f94ba9d979b9396d4999597" target="_blank">
+          <i class="fas fa-envelope"></i><span>Email</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="foot">
+      <a href="https://huseyinbicen.com">huseyinbicen.com</a>
+      &nbsp;·&nbsp; © <span id="yr"></span>
+      &nbsp;·&nbsp; built by <a href="https://github.com/huseyinbicen">Huseyin</a>
+    </div>
+
+  </div><!-- /.col -->
+</div><!-- /.scroll-wrap -->
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const pad = n => String(n).padStart(2,'0');
+  function diff(now, from) {
+    let y=now.diff(from,'year'); from.add(y,'years');
+    let mo=now.diff(from,'months'); from.add(mo,'months');
+    let d=now.diff(from,'days'); from.add(d,'days');
+    let h=now.diff(from,'hours'); from.add(h,'hours');
+    let m=now.diff(from,'minutes'); from.add(m,'minutes');
+    let s=now.diff(from,'seconds');
+    return [y,mo,d,h,m,s];
+  }
+  function tick() {
+    const now = moment();
+    const [by,bmo,bd,bh,bm,bs] = diff(now.clone(), moment("1996-06-13 09:00:00","YYYY-MM-DD HH:mm:ss"));
+    const [wy,wmo,wd,wh,wm,ws] = diff(now.clone(), moment("2019-09-09 09:00:00","YYYY-MM-DD HH:mm:ss"));
+    document.getElementById('b_y').textContent  = pad(by);
+    document.getElementById('b_mo').textContent = pad(bmo);
+    document.getElementById('b_d').textContent  = pad(bd);
+    document.getElementById('b_h').textContent  = pad(bh);
+    document.getElementById('b_m').textContent  = pad(bm);
+    document.getElementById('b_s').textContent  = pad(bs);
+    document.getElementById('w_y').textContent  = pad(wy);
+    document.getElementById('w_mo').textContent = pad(wmo);
+    document.getElementById('w_d').textContent  = pad(wd);
+    document.getElementById('w_h').textContent  = pad(wh);
+    document.getElementById('w_m').textContent  = pad(wm);
+    document.getElementById('w_s').textContent  = pad(ws);
+    document.getElementById('exp-years').textContent = `${wy}${(wmo + wd + wh + wm + ws) > 0 ? '+' : ''} years`;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+
+<!-- Particle background (original style from your site) -->
+<script>
+(function(){
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = { x: -9999, y: -9999 };
+  const COUNT = 80;
+  const CONNECT_DIST = 130;
+  const MOUSE_DIST = 200;
+  const PARTICLE_COLOR = '#4fc3f7';
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize); resize();
+
+  class Particle {
+    constructor() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.r  = Math.random() * 1.6 + 0.6;
+      // randomly assign a theme color: cyan, gold, or soft white
+      const roll = Math.random();
+      if (roll < 0.6)      this.color = '79,195,247';   // cyan
+      else if (roll < 0.85) this.color = '255,213,79';  // gold
+      else                  this.color = '105,240,174'; // green
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy;
+      if (this.x < 0 || this.x > W) this.vx *= -1;
+      if (this.y < 0 || this.y > H) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},0.7)`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+  // Track mouse on window so the card doesn't block it
+  const mp = { x: -9999, y: -9999 };
+  window.addEventListener('mousemove', e => { mp.x = e.clientX; mp.y = e.clientY; });
+  window.addEventListener('touchmove', e => {
+    e.preventDefault();
+    mp.x = e.touches[0].clientX; mp.y = e.touches[0].clientY;
+  }, { passive: false });
+
+  // Click to burst new particles from cursor
+  window.addEventListener('click', e => {
+    for (let i = 0; i < 6; i++) {
+      const p = new Particle();
+      p.x = e.clientX; p.y = e.clientY;
+      p.vx = (Math.random() - 0.5) * 3;
+      p.vy = (Math.random() - 0.5) * 3;
+      particles.push(p);
+    }
+    // Keep total count reasonable
+    if (particles.length > COUNT + 60) particles.splice(0, 6);
+  });
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+
+    // particle-to-particle connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist > CONNECT_DIST) continue;
+        const alpha = (1 - dist / CONNECT_DIST) * 0.18;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${particles[i].color},${alpha})`;
+        ctx.lineWidth = 0.7;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+      // mouse connections
+      const mdx = particles[i].x - mp.x, mdy = particles[i].y - mp.y;
+      const mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+      if (mdist < MOUSE_DIST) {
+        const alpha = (1 - mdist / MOUSE_DIST) * 0.5;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${particles[i].color},${alpha})`;
+        ctx.lineWidth = 0.9;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mp.x, mp.y);
+        ctx.stroke();
+      }
+    }
+
+    // draw mouse dot
+    if (mp.x > 0) {
+      ctx.beginPath();
+      ctx.arc(mp.x, mp.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(79,195,247,0.8)';
+      ctx.fill();
+    }
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-
-    <!-- Font Awesome JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
-        integrity="sha512-fzff82+8pzHnwA1mQ0dzz9/E0B+ZRizq08yZfya66INZBz86qKTCt9MLU0NCNIgaMJCgeyhujhasnFUsYMsi0Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- Moment JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- Jquery JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- JS for Calculate Dates -->
-    <script type="text/javascript">
-        document.querySelector("#date_").innerHTML = (new Date()).getFullYear();
-
-        function pad(d) {
-            if (d < 10) {
-                return "0" + d;
-            } else {
-                return d;
-            }
-        }
-
-        function diffYMDHMS(date1, date2) {
-            let years = date1.diff(date2, 'year');
-            date2.add(years, 'years');
-
-            let months = date1.diff(date2, 'months');
-            date2.add(months, 'months');
-
-            let days = date1.diff(date2, 'days');
-            date2.add(days, 'days');
-
-            let hours = date1.diff(date2, 'hours');
-            date2.add(hours, 'hours');
-
-            let minutes = date1.diff(date2, 'minutes');
-            date2.add(minutes, 'minutes');
-
-            let seconds = date1.diff(date2, 'seconds');
-
-            return { years, months, days, hours, minutes, seconds };
-        }
-
-        var calculateAge = () => {
-            let work_year = document.querySelector('#work_years_');
-            let work_months = document.querySelector('#work_months_');
-            let work_days = document.querySelector('#work_days_');
-            let work_hours = document.querySelector('#work_hours_');
-            let work_minutes = document.querySelector('#work_minutes_');
-            let work_seconds = document.querySelector('#work_seconds_');
-
-            let birth_year = document.querySelector('#birth_years_');
-            let birth_months = document.querySelector('#birth_months_');
-            let birth_days = document.querySelector('#birth_days_');
-            let birth_hours = document.querySelector('#birth_hours_');
-            let birth_minutes = document.querySelector('#birth_minutes_');
-            let birth_seconds = document.querySelector('#birth_seconds_');
-
-            setInterval(function () {
-                var now = moment();
-                var start_work_date = moment("2019-09-09 09:00:00", "YYYY-MM-DD HH:mm:ss");
-                var work_diff = diffYMDHMS(now, start_work_date);
-
-                work_year.innerHTML = pad(work_diff.years);
-                work_months.innerHTML = pad(work_diff.months);
-                work_days.innerHTML = pad(work_diff.days);
-                work_hours.innerHTML = pad(work_diff.hours);
-                work_minutes.innerHTML = pad(work_diff.minutes);
-                work_seconds.innerHTML = pad(work_diff.seconds);
-
-                var birth_date = moment("1996-06-13 09:00:00", "YYYY-MM-DD HH:mm:ss");
-                var birth_diff = diffYMDHMS(now, birth_date);
-
-                birth_year.innerHTML = pad(birth_diff.years);
-                birth_months.innerHTML = pad(birth_diff.months);
-                birth_days.innerHTML = pad(birth_diff.days);
-                birth_hours.innerHTML = pad(birth_diff.hours);
-                birth_minutes.innerHTML = pad(birth_diff.minutes);
-                birth_seconds.innerHTML = pad(birth_diff.seconds);
-
-            }, 1000);
-        }
-
-        calculateAge();
-
-    </script>
-
-    <!-- JS for Background -->
-    <script type="text/javascript">
-        // Set up ParticleNetwork appropriately for the environment.
-        (function (factory) {
-
-            // Establish the root object, `window` in the browser, or `global` on the server.
-            var root = (typeof self === 'object' && self.self === self && self) || (typeof global === 'object' && global.global === global && global);
-
-            // AMD.
-            if (typeof define === 'function' && define.amd) {
-                define(['exports'], function (exports) {
-                    root.ParticleNetwork = factory(root, exports);
-                });
-            }
-
-            // Node.js or CommonJS.
-            else if (typeof module === 'object' && module.exports) {
-                module.exports = factory(root, {});
-            }
-
-            // Browser global.
-            else {
-                root.ParticleNetwork = factory(root, {});
-            }
-
-        }(function (root, ParticleNetwork) {
-
-            // Create Particle class
-            var Particle = function (parent) {
-
-                this.canvas = parent.canvas;
-                this.ctx = parent.ctx;
-                this.particleColor = parent.options.particleColor;
-
-                this.x = Math.random() * this.canvas.width;
-                this.y = Math.random() * this.canvas.height;
-                this.velocity = {
-                    x: (Math.random() - 0.5) * parent.options.velocity,
-                    y: (Math.random() - 0.5) * parent.options.velocity
-                };
-            };
-            Particle.prototype.update = function () {
-
-                // Change dir if outside map
-                if (this.x > this.canvas.width + 20 || this.x < -20) {
-                    this.velocity.x = -this.velocity.x;
-                }
-                if (this.y > this.canvas.height + 20 || this.y < -20) {
-                    this.velocity.y = -this.velocity.y;
-                }
-
-                // Update position
-                this.x += this.velocity.x;
-                this.y += this.velocity.y;
-            };
-            Particle.prototype.draw = function () {
-
-                // Draw particle
-                this.ctx.beginPath();
-                this.ctx.fillStyle = this.particleColor;
-                this.ctx.globalAlpha = 0.7;
-                this.ctx.arc(this.x, this.y, 1.5, 0, 2 * Math.PI);
-                this.ctx.fill();
-            };
-
-            // Create ParticleNetwork class
-            ParticleNetwork = function (canvas, options) {
-
-                this.canvasDiv = canvas;
-                this.canvasDiv.size = {
-                    'width': this.canvasDiv.offsetWidth,
-                    'height': this.canvasDiv.offsetHeight
-                };
-
-                // Set options
-                options = options !== undefined ? options : {};
-                this.options = {
-                    particleColor: (options.particleColor !== undefined) ? options.particleColor : '#fff',
-                    background: (options.background !== undefined) ? options.background : '#1a252f',
-                    interactive: (options.interactive !== undefined) ? options.interactive : true,
-                    velocity: this.setVelocity(options.speed),
-                    density: this.setDensity(options.density)
-                };
-
-                this.init();
-            };
-            ParticleNetwork.prototype.init = function () {
-
-                // Create background div
-                this.bgDiv = document.createElement('div');
-                this.canvasDiv.appendChild(this.bgDiv);
-                this.setStyles(this.bgDiv, {
-                    'position': 'absolute',
-                    'top': 0,
-                    'left': 0,
-                    'bottom': 0,
-                    'right': 0,
-                    'z-index': 1
-                });
-
-                // Check if valid background hex color
-                if ((/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i).test(this.options.background)) {
-                    this.setStyles(this.bgDiv, {
-                        'background': this.options.background
-                    });
-                }
-                // Else check if valid image
-                else if ((/\.(gif|jpg|jpeg|tiff|png)$/i).test(this.options.background)) {
-                    this.setStyles(this.bgDiv, {
-                        'background': 'url("' + this.options.background + '") no-repeat center',
-                        'background-size': 'cover'
-                    });
-                }
-                // Else throw error
-                else {
-                    console.error('Please specify a valid background image or hexadecimal color');
-                    return false;
-                }
-
-                // Check if valid particleColor
-                if (!(/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i).test(this.options.particleColor)) {
-                    console.error('Please specify a valid particleColor hexadecimal color');
-                    return false;
-                }
-
-                // Create canvas & context
-                this.canvas = document.createElement('canvas');
-                this.canvasDiv.appendChild(this.canvas);
-                this.ctx = this.canvas.getContext('2d');
-                this.canvas.width = this.canvasDiv.size.width;
-                this.canvas.height = this.canvasDiv.size.height;
-                this.setStyles(this.canvasDiv, { 'position': 'relative' });
-                this.setStyles(this.canvas, {
-                    'z-index': '20',
-                    'position': 'relative'
-                });
-
-                // Add resize listener to canvas
-                window.addEventListener('resize', function () {
-
-                    // Check if div has changed size
-                    if (this.canvasDiv.offsetWidth === this.canvasDiv.size.width && this.canvasDiv.offsetHeight === this.canvasDiv.size.height) {
-                        return false;
-                    }
-
-                    // Scale canvas
-                    this.canvas.width = this.canvasDiv.size.width = this.canvasDiv.offsetWidth;
-                    this.canvas.height = this.canvasDiv.size.height = this.canvasDiv.offsetHeight;
-
-                    // Set timeout to wait until end of resize event
-                    clearTimeout(this.resetTimer);
-                    this.resetTimer = setTimeout(function () {
-
-                        // Reset particles
-                        this.particles = [];
-                        for (var i = 0; i < this.canvas.width * this.canvas.height / this.options.density; i++) {
-                            this.particles.push(new Particle(this));
-                        }
-                        if (this.options.interactive) {
-                            this.particles.push(this.mouseParticle);
-                        }
-
-                        // Update canvas
-                        requestAnimationFrame(this.update.bind(this));
-
-                    }.bind(this), 500);
-
-                }.bind(this));
-
-                // Initialise particles
-                this.particles = [];
-                for (var i = 0; i < this.canvas.width * this.canvas.height / this.options.density; i++) {
-                    this.particles.push(new Particle(this));
-                }
-
-                if (this.options.interactive) {
-
-                    // Add mouse particle if interactive
-                    this.mouseParticle = new Particle(this);
-                    this.mouseParticle.velocity = {
-                        x: 0,
-                        y: 0
-                    };
-                    this.particles.push(this.mouseParticle);
-
-                    // Mouse event listeners
-                    this.canvas.addEventListener('mousemove', function (e) {
-                        this.mouseParticle.x = e.clientX - this.canvas.offsetLeft;
-                        this.mouseParticle.y = e.clientY - this.canvas.offsetTop;
-                    }.bind(this));
-
-                    this.canvas.addEventListener('mouseup', function (e) {
-                        this.mouseParticle.velocity = {
-                            x: (Math.random() - 0.5) * this.options.velocity,
-                            y: (Math.random() - 0.5) * this.options.velocity
-                        };
-                        this.mouseParticle = new Particle(this);
-                        this.mouseParticle.velocity = {
-                            x: 0,
-                            y: 0
-                        };
-                        this.particles.push(this.mouseParticle);
-                    }.bind(this));
-                }
-
-                // Update canvas
-                requestAnimationFrame(this.update.bind(this));
-            }
-            ParticleNetwork.prototype.update = function () {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.ctx.globalAlpha = 1;
-
-                // Draw particles
-                for (var i = 0; i < this.particles.length; i++) {
-                    this.particles[i].update();
-                    this.particles[i].draw();
-
-                    // Draw connections
-                    for (var j = this.particles.length - 1; j > i; j--) {
-                        var distance = Math.sqrt(
-                            Math.pow(this.particles[i].x - this.particles[j].x, 2)
-                            + Math.pow(this.particles[i].y - this.particles[j].y, 2)
-                        );
-                        if (distance > 120) {
-                            continue;
-                        }
-
-                        this.ctx.beginPath();
-                        this.ctx.strokeStyle = this.options.particleColor;
-                        this.ctx.globalAlpha = (120 - distance) / 120;
-                        this.ctx.lineWidth = 0.7;
-                        this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                        this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                        this.ctx.stroke();
-                    }
-                }
-
-                if (this.options.velocity !== 0) {
-                    requestAnimationFrame(this.update.bind(this));
-                }
-            };
-
-            // Helper method to set velocity multiplier
-            ParticleNetwork.prototype.setVelocity = function (speed) {
-                if (speed === 'fast') {
-                    return 1;
-                }
-                else if (speed === 'slow') {
-                    return 0.33;
-                }
-                else if (speed === 'none') {
-                    return 0;
-                }
-                return 0.66;
-            }
-            // Helper method to set density multiplier
-            ParticleNetwork.prototype.setDensity = function (density) {
-                if (density === 'high') {
-                    return 5000;
-                }
-                else if (density === 'low') {
-                    return 20000;
-                }
-                return !isNaN(parseInt(density, 10)) ? density : 10000;
-            }
-            // Helper method to set multiple styles
-            ParticleNetwork.prototype.setStyles = function (div, styles) {
-                for (var property in styles) {
-                    div.style[property] = styles[property];
-                }
-            }
-
-            return ParticleNetwork;
-
-        }));
-    </script>
-
-    <!-- JS for set up Background -->
-    <script type="text/javascript">
-        var options = {
-            particleColor: '#fff',
-            background: '#1a252f',
-            interactive: true,
-            speed: 'medium',
-            density: 'medium'
-        };
-
-        var particleCanvas = new ParticleNetwork(document.getElementById('particle-canvas'), options);
-    </script>
 </body>
-
 </html>
