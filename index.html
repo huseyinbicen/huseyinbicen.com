@@ -73,6 +73,9 @@
     .scroll-wrap {
       position: fixed; inset: 0; z-index: 10;
       overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      overscroll-behavior: contain;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -87,6 +90,7 @@
     .col {
       width: 100%;
       max-width: 660px;
+      margin-top: 2.4rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -529,6 +533,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 520px) {
       .scroll-wrap { padding: 1rem 0.75rem; }
+      .col { margin-top: 1.6rem; }
       .panel { padding: 1rem 1rem; }
       .identity-inner { gap: 1rem; }
       .avatar-wrap img { width: 64px; height: 64px; }
@@ -722,9 +727,8 @@
   const mp = { x: -9999, y: -9999 };
   window.addEventListener('mousemove', e => { mp.x = e.clientX; mp.y = e.clientY; });
   window.addEventListener('touchmove', e => {
-    e.preventDefault();
     mp.x = e.touches[0].clientX; mp.y = e.touches[0].clientY;
-  }, { passive: false });
+  }, { passive: true });
 
   // Click to burst new particles from cursor
   window.addEventListener('click', e => {
