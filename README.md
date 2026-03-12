@@ -1,29 +1,51 @@
-# MY Personel Web site
+# Huseyin Bicen - Personal Website
+
+Live site: [https://www.huseyinbicen.com](https://www.huseyinbicen.com)
 
 ## Overview
 
-* Check My Website : https://www.huseyinbicen.com
+Single-page personal website for Huseyin Bicen, focused on backend engineering and AI-era infrastructure messaging.
 
-Set up your birthday to birth_date
+The site is built as a static `index.html` file with:
+- custom CSS theme and panel-based layout
+- animated canvas particle background
+- live counters for life span and professional tenure
+- dynamic footer year
+- social links (LinkedIn, GitHub, Instagram, Email)
 
-Velocity of the particles. Must be one of the following:
+## Run Locally
 
-* `none`
-* `slow`
-* `medium`
-* `fast`
+Because this is a static page, you can open `index.html` directly in a browser.
 
+If you prefer a local server:
 
-Density of the particles. Actual amount depends on the canvas size, and is calculate by dividing the total canvas size by the density. The following values are accepted:
+```bash
+python3 -m http.server 8080
+```
 
-* `low` (or `20000`)
-* `medium` (or `10000`)
-* `high` (or `5000`)
-* Any number
+Then visit `http://localhost:8080`.
 
-References link;
+## Key Dynamic Fields
+
+All dynamic values are handled in the inline JavaScript inside `index.html`.
+
+- Footer year:
+  - `new Date().getFullYear()` populates `#yr`
+- Professional experience text:
+  - `#exp-years` is calculated from work start date (`2019-09-09 09:00:00`)
+  - renders as `N+ years` when there is partial progress into the next year
+- Life span and professional tenure counters:
+  - updated every second via `tick()`
+  - source dates:
+    - birth date: `1996-06-13 09:00:00`
+    - work start: `2019-09-09 09:00:00`
+
+## Main File
+
+- `index.html` - markup, styling, and scripts in one file
+
+## Credits / Inspiration
+
 - https://github.com/HasanNaser/My-Personel-Website
 - https://codepen.io/franky/pen/LGMWPK
 - https://github.com/JulianLaval/canvas-particle-network
-- https://i.ibb.co/QQtbXzV/photo-1450849608880-6f787542c88a.jpg
-- https://bbbootstrap.com/snippets/bootstrap-5-user-social-profile-transition-effect-79746232
